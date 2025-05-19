@@ -258,11 +258,75 @@ public class Main {
     }
 
     public static void showMedAssistantMenu(String name) {
-        System.out.println("Nurse menu for " + name);
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        while (true) {
+            System.out.println("\nЗдравствуйте, медсестра " + name + "!");
+            System.out.println("1. Показать список процедур");
+            System.out.println("2. Найти пациента");
+            System.out.println("3. Показать список поручений");
+            System.out.println("4. Выполнить поручение");
+            System.out.println("5. Показать завершенные поручения");
+            System.out.println("6. Выход");
+            System.out.print("Ваш выбор: ");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1 -> NurseService.showProcedures();
+                case 2 -> NurseService.findPatient();
+                case 3 -> NurseService.showTasks();
+                case 4 -> NurseService.completeTask();
+                case 5 -> NurseService.showCompletedTasks();
+                case 6 -> {
+                    System.out.println("До свидания!");
+                    return;
+                }
+                default -> System.out.println("Неверный выбор.");
+            }
+        }
     }
 
     public static void showMainDoctorMenu(String name) {
-        System.out.println("Chief doctor menu for " + name);
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        while (true) {
+            System.out.println("\nЗдравствуйте, главврач " + name + "!");
+            System.out.println("1. Показать список медсестёр");
+            System.out.println("2. Показать список лечащих врачей");
+            System.out.println("3. Показать количество пациентов");
+            System.out.println("4. Сотрудник с максимальной зарплатой");
+            System.out.println("5. Сотрудник с минимальной зарплатой");
+            System.out.println("6. Выход");
+            System.out.print("Ваш выбор: ");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1 -> ChiefDoctorService.showNurses();
+                case 2 -> ChiefDoctorService.showDoctors();
+                case 3 -> ChiefDoctorService.countPatients();
+                case 4 -> ChiefDoctorService.showMaxSalary();
+                case 5 -> ChiefDoctorService.showMinSalary();
+                case 6 -> {
+                    System.out.println("До свидания!");
+                    return;
+                }
+                default -> System.out.println("Неверный выбор.");
+            }
+        }
     }
 
     public static void showPatientMenu(String login) {
