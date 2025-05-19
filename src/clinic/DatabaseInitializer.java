@@ -20,7 +20,7 @@ role TEXT NOT NULL,
 name TEXT NOT NULL
 );
 """;
-            // Таблица пациентов
+            // Patients table
             String createPatientsTable = """
 CREATE TABLE IF NOT EXISTS patients (
 login TEXT PRIMARY KEY,
@@ -33,7 +33,7 @@ treatment_days INTEGER
 );
 """;
 
-// История болезней
+// Medical history
             String createHistory = """
 CREATE TABLE IF NOT EXISTS medical_history (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +44,7 @@ FOREIGN KEY (patient_login) REFERENCES users(login)
 );
 """;
 
-// Поручения медсестрам
+// Tasks assigned to nurses
             String createTasksTable = """
 CREATE TABLE IF NOT EXISTS tasks (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,6 +55,26 @@ status TEXT,
 date_assigned TEXT,
 date_done TEXT,
 UNIQUE(description, doctor_login, nurse_login, date_assigned)
+);
+""";
+            // Procedures table
+            String createProceduresTable = """
+CREATE TABLE IF NOT EXISTS procedures (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+description TEXT,
+patient_login TEXT,
+UNIQUE(description, patient_login)
+);
+""";
+
+// Staff table (for chief doctor)
+            String createStaffTable = """
+CREATE TABLE IF NOT EXISTS staff (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT UNIQUE,
+role TEXT,
+salary INTEGER,
+hire_date TEXT
 );
 """;
 
