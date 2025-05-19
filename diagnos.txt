@@ -1,0 +1,15 @@
+Flu=Rest, hydration, antiviral medication;5
+Cold=Warm drinks, rest, nasal spray;3
+COVID-19=Isolation, fever reducers, monitoring;7
+Sore throat=Gargling, throat lozenges, antibiotics;4
+Headache=Painkillers, rest;2
+Stomach ache=Light food, antacids;2
+Back pain=Massage, pain relief;3
+Fracture=Immobilization, hospital care;14
+Hypertension=Medication, low-salt diet;5
+Diabetes=Insulin, diet control;7
+Allergy=Antihistamines, avoid allergens;3
+Bronchitis=Inhalers, rest;5
+Pneumonia=Antibiotics, oxygen therapy;10
+Insomnia=Sleep hygiene, light medication;4
+Migraine=Pain relief, dark room;3
