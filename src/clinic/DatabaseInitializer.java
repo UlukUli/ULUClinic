@@ -77,6 +77,50 @@ salary INTEGER,
 hire_date TEXT
 );
 """;
+            // Execute table creation
+            stmt.execute(createUsers);
+            stmt.execute(createPatientsTable);
+            stmt.execute(createHistory);
+            stmt.execute(createTasksTable);
+            stmt.execute(createProceduresTable);
+            stmt.execute(createStaffTable);
+
+// ====== Sample data ======
+
+            stmt.execute("""
+INSERT OR IGNORE INTO users (login, password, role, name) VALUES
+('patient1', '1234', 'patient', 'Bekzat Patient'),
+('akzhol', '1234', 'patient', 'Akzhol Aliev'),
+('doc1', '1234', 'doctor', 'Aigul K'),
+('nurse1', '1234', 'nurse', 'Nurse Natalia'),
+('chief1', '1234', 'chief', 'Chief Ivanova');
+""");
+
+            stmt.execute("""
+INSERT OR IGNORE INTO patients (login, fio, birth_date, height, weight, blood_type, treatment_days)
+VALUES
+('patient1', 'Bekzat Patient', '2000-01-01', 180, 75, 'A+', 5),
+('akzhol', 'Akzhol Aliev', '2005-01-01', 175, 68, 'O-', 0);
+""");
+
+            stmt.execute("""
+INSERT OR IGNORE INTO staff (name, role, salary, hire_date) VALUES
+('Aigul K', 'doctor', 350000, '2022-09-01'),
+('Nurse Natalia', 'nurse', 220000, '2023-01-15'),
+('Chief Ivanova', 'chief', 500000, '2021-06-10');
+""");
+
+            stmt.execute("""
+INSERT OR IGNORE INTO procedures (description, patient_login)
+VALUES ('Measure blood pressure', 'patient1');
+""");
+
+            stmt.execute("""
+INSERT OR IGNORE INTO tasks (description, doctor_login, nurse_login, status, date_assigned)
+VALUES ('Set up IV', 'doc1', 'nurse1', 'pending', '2025-05-14');
+""");
+
+            System.out.println("✅ Database initialized.");
 
             stmt.execute(createUsers);
 
