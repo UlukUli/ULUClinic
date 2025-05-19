@@ -266,6 +266,40 @@ public class Main {
     }
 
     public static void showPatientMenu(String login) {
-        System.out.println("Patient menu for login: " + login);
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        System.out.println("Logged in as: " + login);
+
+        while (true) {
+            System.out.println("\nWelcome, patient!");
+            System.out.println("1. View medical history");
+            System.out.println("2. View last diagnosis date");
+            System.out.println("3. View treatment days");
+            System.out.println("4. View doctor schedule");
+            System.out.println("5. View personal information");
+            System.out.println("6. Exit");
+            System.out.print("Your choice: ");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1 -> PatientService.showHistory(login);
+                case 2 -> PatientService.showLastDate(login);
+                case 3 -> PatientService.showTreatmentDays(login);
+                case 4 -> PatientService.showSchedule();
+                case 5 -> PatientService.showPersonalInfo(login);
+                case 6 -> {
+                    System.out.println("Goodbye!");
+                    return;
+                }
+                default -> System.out.println("Invalid choice.");
+            }
+        }
     }
 }
