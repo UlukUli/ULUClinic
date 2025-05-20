@@ -8,6 +8,14 @@ public class Main {
 // Initialize database
         DatabaseInitializer.initialize();
 
+// ----- Debug/Delete Utilities (optional, use when needed) -----
+// deleteAllMedicalHistoryFor("patient1");
+// deleteAllTasks();
+// deleteAllProcedures();
+// deleteAllStaff();
+// debugShowAllTasks();
+// debugShowAllMedicalHistory();
+
 // Login
         String[] user = AuthService.login();
         if (user == null) {
@@ -364,6 +372,103 @@ public class Main {
                 }
                 default -> System.out.println("Invalid choice.");
             }
+        }
+    }
+    // Utility: Delete all medical history for a patient
+    public static void deleteAllMedicalHistoryFor(String login) {
+        String sql = "DELETE FROM medical_history WHERE patient_login = ?";
+
+        try (Connection conn = DatabaseManager.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, login);
+            int rows = stmt.executeUpdate();
+            System.out.println("✅ Deleted " + rows + " records for: " + login);
+
+        } catch (Exception e) {
+            System.out.println("❌ Error deleting medical history: " + e.getMessage());
+        }
+    }
+
+    // Utility: Delete all tasks
+    public static void deleteAllTasks() {
+        try (Connection conn = DatabaseManager.connect();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.execute("DELETE FROM tasks");
+            System.out.println("✅ All tasks deleted.");
+
+        } catch (Exception e) {
+            System.out.println("❌ Error deleting tasks: " + e.getMessage());
+        }
+    }
+
+    // Utility: Delete all procedures
+    public static void deleteAllProcedures() {
+        try (Connection conn = DatabaseManager.connect();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.execute("DELETE FROM procedures");
+            System.out.println("✅ All procedures deleted.");
+
+        } catch (Exception e) {
+            System.out.println("❌ Error deleting procedures: " + e.getMessage());
+        }
+    }
+
+    // Utility: Delete all staff
+    public static void deleteAllStaff() {
+        try (Connection conn = DatabaseManager.connect();
+             Statement stmt = conn.createStatement()) {
+
+            stmt.execute("DELETE FROM staff");
+            System.out.println("✅ Staff table cleared.");
+
+        } catch (Exception e) {
+            System.out.println("❌ Error clearing staff: " + e.getMessage());
+        }
+    }
+
+    // Debug: Show all tasks
+    public static void debugShowAllTasks() {
+        System.out.println("------ All Tasks ------");
+        String sql = "SELECT * FROM tasks";
+
+        try (Connection conn = DatabaseManager.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        " | Description: " + rs.getString("description") +
+                        " | Doctor: " + rs.getString("doctor_login") +
+                        " | Nurse: " + rs.getString("nurse_login") +
+                        " | Status: " + rs.getString("status"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Error: " + e.getMessage());
+        }
+    }
+
+    // Debug: Show all medical history
+    public static void debugShowAllMedicalHistory() {
+        System.out.println("----- All medical_history records -----");
+        String sql = "SELECT * FROM medical_history";
+
+        try (Connection conn = DatabaseManager.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        " | Login: " + rs.getString("patient_login") +
+                        " | Date: " + rs.getString("date") +
+                        " | Diagnosis: " + rs.getString("diagnosis"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Error: " + e.getMessage());
         }
     }
 }
