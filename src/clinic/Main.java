@@ -15,7 +15,7 @@ public class Main {
 // deleteAllStaff();
 // debugShowAllTasks();
 // debugShowAllMedicalHistory();
-
+//showInheritance();
 // Login
         String[] user = AuthService.login();
         if (user == null) {
@@ -470,5 +470,11 @@ public class Main {
         } catch (Exception e) {
             System.out.println("❌ Error: " + e.getMessage());
         }
+    }
+    // Temporary method to demonstrate OOP inheritance
+    public static void showInheritance() {
+        Nurse nurse = new Nurse("Natalya", 220000, "2023-01-15", "Day", true);
+        nurse.displayInfo();
+        nurse.assistDoctor();
     }
 }
