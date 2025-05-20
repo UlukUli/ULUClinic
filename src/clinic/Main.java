@@ -270,19 +270,19 @@ public class Main {
         int choice;
 
         while (true) {
-            System.out.println("\nЗдравствуйте, медсестра " + name + "!");
-            System.out.println("1. Показать список процедур");
-            System.out.println("2. Найти пациента");
-            System.out.println("3. Показать список поручений");
-            System.out.println("4. Выполнить поручение");
-            System.out.println("5. Показать завершенные поручения");
-            System.out.println("6. Выход");
-            System.out.print("Ваш выбор: ");
+            System.out.println("\nHello, Nurse " + name + "!");
+            System.out.println("1. Show procedures list");
+            System.out.println("2. Find patient");
+            System.out.println("3. Show task list");
+            System.out.println("4. Complete a task");
+            System.out.println("5. Show completed tasks");
+            System.out.println("6. Exit");
+            System.out.print("Your choice: ");
 
             try {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                System.out.println("Invalid input. Please try again.");
                 continue;
             }
 
@@ -293,10 +293,10 @@ public class Main {
                 case 4 -> NurseService.completeTask();
                 case 5 -> NurseService.showCompletedTasks();
                 case 6 -> {
-                    System.out.println("До свидания!");
+                    System.out.println("Goodbye!");
                     return;
                 }
-                default -> System.out.println("Неверный выбор.");
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
@@ -306,19 +306,19 @@ public class Main {
         int choice;
 
         while (true) {
-            System.out.println("\nЗдравствуйте, главврач " + name + "!");
-            System.out.println("1. Показать список медсестёр");
-            System.out.println("2. Показать список лечащих врачей");
-            System.out.println("3. Показать количество пациентов");
-            System.out.println("4. Сотрудник с максимальной зарплатой");
-            System.out.println("5. Сотрудник с минимальной зарплатой");
-            System.out.println("6. Выход");
-            System.out.print("Ваш выбор: ");
+            System.out.println("\nHello, Chief Doctor " + name + "!");
+            System.out.println("1. Show list of nurses");
+            System.out.println("2. Show list of doctors");
+            System.out.println("3. Show number of patients");
+            System.out.println("4. Show employee with max salary");
+            System.out.println("5. Show employee with min salary");
+            System.out.println("6. Exit");
+            System.out.print("Your choice: ");
 
             try {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Неверный ввод. Попробуйте ещё раз.");
+                System.out.println("Invalid input. Please try again.");
                 continue;
             }
 
@@ -329,10 +329,10 @@ public class Main {
                 case 4 -> ChiefDoctorService.showMaxSalary();
                 case 5 -> ChiefDoctorService.showMinSalary();
                 case 6 -> {
-                    System.out.println("До свидания!");
+                    System.out.println("Goodbye!");
                     return;
                 }
-                default -> System.out.println("Неверный выбор.");
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
