@@ -58,7 +58,7 @@ ULUClinic is a **Java console application** that simulates a hospital management
 Login: doc1, Password: 1234 (Doctor)
 Login: nurse1, Password: 1234 (Nurse)
 Login: chief1, Password: 1234 (Chief Doctor)
-Login: patient1, Password: 1234 (Patient
+Login: patient1, Password: 1234 (Patient)
 
 ---
 
